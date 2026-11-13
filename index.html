@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10091d">
+  <meta name="description" content="BisayaRevolution — a Minecraft community built on teamwork, skill, and revolution. Join our clan.">
+  <title>BisayaRevolution | Minecraft Clan</title>
+  <style>
+    :root {
+      --bg: #0b0712;
+      --panel: rgba(28, 17, 43, .78);
+      --purple: #a855f7;
+      --violet: #7c3aed;
+      --light: #e9d5ff;
+      --muted: #b7a8c9;
+      --line: rgba(192, 132, 252, .22);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      color: #f8f4ff;
+      background:
+        radial-gradient(ellipse at 15% 5%, rgba(126, 34, 206, .22), transparent 35%),
+        radial-gradient(ellipse at 90% 40%, rgba(88, 28, 135, .18), transparent 38%),
+        var(--bg);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .particles { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+    .particles span {
+      position: absolute; width: 3px; height: 3px; border-radius: 50%;
+      background: #d8b4fe; opacity: .45; box-shadow: 0 0 12px #a855f7;
+      animation: float 9s infinite ease-in-out;
+    }
+    .particles span:nth-child(1) { left: 8%; top: 20%; animation-delay: -2s; }
+    .particles span:nth-child(2) { left: 23%; top: 70%; animation-delay: -5s; }
+    .particles span:nth-child(3) { left: 48%; top: 35%; animation-delay: -1s; }
+    .particles span:nth-child(4) { left: 72%; top: 18%; animation-delay: -4s; }
+    .particles span:nth-child(5) { left: 88%; top: 66%; animation-delay: -3s; }
+    .particles span:nth-child(6) { left: 60%; top: 86%; animation-delay: -6s; }
+    @keyframes float { 0%,100% { transform: translateY(0); opacity: .2; } 50% { transform: translateY(-28px); opacity: .8; } }
+
+    .nav {
+      position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between;
+      align-items: center; gap: 20px; padding: 16px max(5%, calc((100% - 1160px)/2));
+      background: rgba(11, 7, 18, .82); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { font-weight: 900; letter-spacing: .06em; color: var(--light); }
+    .brand span { color: var(--purple); }
+    .nav-links { display: flex; gap: 23px; color: var(--muted); font-size: .9rem; }
+    .nav-links a:hover { color: white; }
+    .menu { display: none; background: none; border: 1px solid var(--line); color: white; padding: 7px 11px; border-radius: 8px; }
+
+    .hero {
+      min-height: 690px; display: grid; place-items: center; text-align: center;
+      padding: 100px 22px 110px; position: relative;
+      background: linear-gradient(180deg, rgba(11,7,18,.05), rgba(11,7,18,.72)),
+        radial-gradient(ellipse at center, rgba(126,34,206,.25), transparent 60%);
+    }
+    .eyebrow {
+      display: inline-block; color: var(--light); border: 1px solid var(--line);
+      background: rgba(126,34,206,.12); border-radius: 999px; padding: 7px 15px;
+      font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 22px;
+    }
+    h1 {
+      font-size: clamp(2.8rem, 9vw, 6.8rem); line-height: .98; font-weight: 950;
+      letter-spacing: -.055em; text-shadow: 0 0 38px rgba(168,85,247,.32);
+    }
+    h1 span { color: #c084fc; }
+    .hero p { max-width: 650px; color: #d2c4e2; margin: 25px auto 30px; font-size: clamp(1rem, 2vw, 1.2rem); }
+    .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 10px; padding: 13px 21px; font-weight: 800; border: 1px solid var(--line);
+      transition: .2s ease; cursor: pointer; font-size: .95rem;
+    }
+    .btn.primary { background: linear-gradient(135deg, #9333ea, #6d28d9); box-shadow: 0 8px 30px rgba(124,58,237,.25); }
+    .btn.secondary { background: rgba(255,255,255,.04); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(168,85,247,.25); }
+    .scroll-note { margin-top: 62px; color: #8e7da1; font-size: .78rem; letter-spacing: .18em; }
+
+    section { width: min(1120px, 90%); margin: 0 auto; padding: 82px 0; }
+    .section-tag { color: #c084fc; text-transform: uppercase; letter-spacing: .2em; font-size: .75rem; font-weight: 800; }
+    h2 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -.04em; margin: 8px 0 13px; }
+    .intro { color: var(--muted); max-width: 680px; margin-bottom: 32px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .card {
+      background: linear-gradient(145deg, rgba(35,22,52,.86), rgba(18,12,27,.9));
+      border: 1px solid var(--line); border-radius: 17px; padding: 24px;
+      box-shadow: 0 12px 45px rgba(0,0,0,.15);
+    }
+    .card .icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .card h3 { font-size: 1.08rem; margin-bottom: 8px; color: #f3e8ff; }
+    .card p { color: var(--muted); font-size: .92rem; }
+    .steps { counter-reset: step; }
+    .step { position: relative; padding-left: 68px; margin: 0 0 19px; }
+    .step::before {
+      counter-increment: step; content: "0" counter(step); position: absolute; left: 0; top: 0;
+      color: #e9d5ff; background: rgba(126,34,206,.22); border: 1px solid var(--line);
+      border-radius: 12px; padding: 9px 11px; font-weight: 900;
+    }
+    .step h3 { margin-bottom: 4px; }
+    .step p { color: var(--muted); font-size: .93rem; }
+    .server-box {
+      border: 1px solid rgba(192,132,252,.35); border-radius: 20px; padding: 30px;
+      background: radial-gradient(ellipse at top right, rgba(126,34,206,.25), transparent 55%), var(--panel);
+      display: flex; align-items: center; justify-content: space-between; gap: 25px; flex-wrap: wrap;
+    }
+    .server-ip { font-size: clamp(1.5rem, 4vw, 2.3rem); font-weight: 900; color: #e9d5ff; letter-spacing: .02em; }
+    .small { color: var(--muted); font-size: .88rem; }
+    .recruit { text-align: center; padding: 55px 25px; border-radius: 22px;
+      background: linear-gradient(135deg, rgba(88,28,135,.45), rgba(35,22,52,.75));
+      border: 1px solid var(--line);
+    }
+    .recruit .intro { margin: 0 auto 25px; }
+    footer { border-top: 1px solid var(--line); padding: 27px 5%; text-align: center; color: #8e7da1; font-size: .83rem; }
+    .toast {
+      position: fixed; bottom: 22px; left: 50%; transform: translate(-50%, 20px);
+      background: #2e1745; border: 1px solid var(--line); border-radius: 9px;
+      padding: 10px 16px; opacity: 0; pointer-events: none; transition: .25s; z-index: 20;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 760px) {
+      .nav { padding: 13px 5%; }
+      .menu { display: block; }
+      .nav-links { display: none; position: absolute; top: 59px; left: 0; right: 0; padding: 18px 5%;
+        flex-direction: column; gap: 15px; background: #110a1c; border-bottom: 1px solid var(--line); }
+      .nav-links.open { display: flex; }
+      .hero { min-height: 610px; }
+      section { padding: 62px 0; }
+      .grid { grid-template-columns: 1fr; }
+      .server-box { padding: 23px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <nav class="nav">
+    <a class="brand" href="#home">BISAYA<span>REVOLUTION</span></a>
+    <button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a><a href="#system">Our System</a><a href="#modes">Gamemodes</a>
+      <a href="#server">Server</a><a href="#join">Join Us</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div>
+      <div class="eyebrow">Minecraft Clan • Community • Competition</div>
+      <h1>BISAYA<br><span>REVOLUTION</span></h1>
+      <p>More than a clan. One community, one name, and one goal: play together, improve together, and make our presence known.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://discord.gg/32wXyZeSMZ" target="_blank" rel="noopener">Join Our Discord ↗</a>
+        <a class="btn secondary" href="#about">Explore the Clan ↓</a>
+      </div>
+      <div class="scroll-note">SCROLL TO DISCOVER</div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="section-tag">Who we are</div>
+      <h2>A clan built on teamwork.</h2>
+      <p class="intro">BisayaRevolution brings Minecraft players together. We value teamwork, activity, respect, and the drive to keep getting better. Whether you're experienced or still learning, there's room to grow with the community.</p>
+      <div class="grid">
+        <article class="card"><div class="icon">⚔️</div><h3>Competitive Spirit</h3><p>Challenge yourself, sharpen your skills, and represent the clan with confidence.</p></article>
+        <article class="card"><div class="icon">🤝</div><h3>Teamwork First</h3><p>Coordinate with teammates, communicate clearly, and support one another.</p></article>
+        <article class="card"><div class="icon">💜</div><h3>One Community</h3><p>Respect every member. Keep the community welcoming, active, and fun.</p></article>
+      </div>
+    </section>
+
+    <section id="system">
+      <div class="section-tag">How we operate</div>
+      <h2>How the clan works</h2>
+      <p class="intro">A simple system that helps members connect, improve, and take part in clan activities.</p>
+      <div class="steps">
+        <div class="step"><h3>Join the Discord</h3><p>Enter our Discord server, read the clan information, and introduce yourself.</p></div>
+        <div class="step"><h3>Get to know the community</h3><p>Meet other members, find teammates, and learn how the clan communicates.</p></div>
+        <div class="step"><h3>Play and improve</h3><p>Join activities, practice your preferred gamemodes, and help your teammates.</p></div>
+        <div class="step"><h3>Represent BisayaRevolution</h3><p>Show respect, follow community rules, and represent the clan positively in-game.</p></div>
+      </div>
+    </section>
+
+    <section id="modes">
+      <div class="section-tag">Where we play</div>
+      <h2>Our gamemodes</h2>
+      <p class="intro">These are starter categories for the website. Edit this list so it shows only the gamemodes BisayaRevolution actually plays.</p>
+      <div class="grid">
+        <article class="card"><div class="icon">💎</div><h3>Crystal PvP</h3><p>Fast-paced combat that rewards timing, aim, awareness, and smart decisions.</p></article>
+        <article class="card"><div class="icon">💣</div><h3>Cart PvP</h3><p>Explosive-based battles where coordination and game sense matter.</p></article>
+        <article class="card"><div class="icon">🛡️</div><h3>SMP</h3><p>Survival multiplayer, teamwork, progression, and community adventures.</p></article>
+        <article class="card"><div class="icon">⚔️</div><h3>Sword & Axe PvP</h3><p>Classic combat focused on movement, spacing, and consistent mechanics.</p></article>
+        <article class="card"><div class="icon">🔱</div><h3>Spear & Mace</h3><p>Weapon-based combat and learning different playstyles.</p></article>
+        <article class="card"><div class="icon">🏆</div><h3>Clan Events</h3><p>Friendly matches, group sessions, and community challenges.</p></article>
+      </div>
+    </section>
+
+    <section id="server">
+      <div class="section-tag">Connect and play</div>
+      <h2>Our server</h2>
+      <p class="intro">Ready to join the action? Use the server address below to connect.</p>
+      <div class="server-box">
+        <div><div class="small">SERVER IP / ADDRESS</div><div class="server-ip" id="serverIp">projectsmp.org</div><div class="small">Check the server's supported Minecraft version before joining.</div></div>
+        <button class="btn primary" id="copyBtn">Copy Server IP</button>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="recruit">
+        <div class="section-tag">Your next move</div>
+        <h2>Ready to join the revolution?</h2>
+        <p class="intro">Meet the members, get clan updates, and find out how to become part of BisayaRevolution.</p>
+        <a class="btn primary" href="https://discord.gg/32wXyZeSMZ" target="_blank" rel="noopener">Enter the Discord ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong style="color:#d8b4fe">BISAYAREVOLUTION</strong></div>
+    <div>Built for the community. Powered by teamwork.</div>
+    <div>Not an official Minecraft or Mojang website.</div>
+  </footer>
+  <div class="toast" id="toast">Server IP copied!</div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const toast = document.getElementById('toast');
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      const ip = document.getElementById('serverIp').textContent.trim();
+      try {
+        await navigator.clipboard.writeText(ip);
+        toast.textContent = 'Server IP copied!';
+      } catch (error) {
+        toast.textContent = 'Copy unavailable — select the IP manually.';
+      }
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    });
+  </script>
+</body>
+</html>
