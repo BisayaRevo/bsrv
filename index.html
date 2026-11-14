@@ -1,0 +1,891 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b08">
+<title>REQUIEM | RQM</title>
+
+<style>
+:root {
+  --bg: #050b08;
+  --panel: #0c1d14;
+  --green: #55f29a;
+  --mint: #c4ffdc;
+  --purple: #a879e8;
+  --muted: #a3b9aa;
+  --line: rgba(85,242,154,.22);
+  --glow: 0 0 25px rgba(85,242,154,.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 15% 0%, #1c784933, transparent 35%),
+    radial-gradient(ellipse at 90% 40%, #46735322, transparent 32%),
+    var(--bg);
+  color: #effff5;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* OPENING ANIMATION */
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #030906;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  animation: introOut 1s ease 2.3s forwards;
+}
+
+.intro-logo {
+  font-size: clamp(60px, 13vw, 120px);
+  font-weight: 1000;
+  letter-spacing: 12px;
+  color: var(--mint);
+  text-shadow: 0 0 25px var(--green),
+               0 0 70px #168b55;
+  animation: logoIn 1.2s ease;
+}
+
+.intro-sub {
+  color: var(--green);
+  letter-spacing: 12px;
+  animation: fadeIn 1s .4s both;
+}
+
+@keyframes logoIn {
+  from {
+    opacity: 0;
+    transform: scale(.6);
+    filter: blur(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes introOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* PARTICLES */
+
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 15px var(--green);
+  animation: particleFloat 8s infinite ease-in-out;
+}
+
+.particle:nth-child(1) { left: 10%; top: 20%; }
+.particle:nth-child(2) { left: 25%; top: 70%; animation-delay: 2s; }
+.particle:nth-child(3) { left: 48%; top: 35%; animation-delay: 3s; }
+.particle:nth-child(4) { left: 70%; top: 15%; animation-delay: 1s; }
+.particle:nth-child(5) { left: 90%; top: 65%; animation-delay: 4s; }
+.particle:nth-child(6) { left: 60%; top: 90%; animation-delay: 5s; }
+
+@keyframes particleFloat {
+  0%,100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  50% {
+    opacity: .8;
+    transform: translateY(-40px);
+  }
+}
+
+/* NAVIGATION */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 6%;
+  background: rgba(4,12,8,.88);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-weight: 1000;
+  letter-spacing: 3px;
+  color: var(--mint);
+}
+
+.brand span {
+  color: var(--green);
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+.menu {
+  display: none;
+  color: white;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 12px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 680px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 100px 20px;
+  background: radial-gradient(
+    ellipse at center,
+    #17734433,
+    transparent 60%
+  );
+  animation: heroEnter 1.2s ease;
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tagline {
+  display: inline-block;
+  padding: 8px 17px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  color: var(--mint);
+  letter-spacing: 3px;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(55px, 12vw, 125px);
+  line-height: 1;
+  letter-spacing: 8px;
+  font-weight: 1000;
+  color: var(--mint);
+  text-shadow: 0 0 20px #55f29a88,
+               0 0 65px #168b5588;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.nickname {
+  color: var(--purple);
+  letter-spacing: 12px;
+  margin-top: 15px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 25px auto 30px;
+  color: var(--muted);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 23px;
+  border-radius: 9px;
+  font-weight: bold;
+  border: 1px solid var(--line);
+  transition: .25s;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #42d987, #167b4b);
+  color: #041109;
+  box-shadow: var(--glow);
+}
+
+.btn.secondary {
+  color: var(--mint);
+  background: #ffffff08;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glow);
+}
+
+.scroll {
+  margin-top: 65px;
+  color: #718979;
+  letter-spacing: 4px;
+  font-size: 11px;
+}
+
+/* SECTIONS */
+
+section {
+  width: 90%;
+  max-width: 1120px;
+  margin: auto;
+  padding: 80px 0;
+}
+
+.section-tag {
+  color: var(--green);
+  font-size: 12px;
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: clamp(30px, 5vw, 52px);
+  margin: 8px 0 15px;
+}
+
+.description {
+  color: var(--muted);
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+
+/* CARDS */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.card {
+  background: linear-gradient(145deg, #112a1de8, #07110cee);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 25px;
+  transition: .3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+  border-color: var(--green);
+  box-shadow: var(--glow);
+}
+
+.card .icon {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  color: var(--mint);
+}
+
+.card p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* HOW WE WORK */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.step {
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+}
+
+.step strong {
+  color: var(--green);
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* MOTTO */
+
+.motto {
+  color: var(--mint);
+  font-size: clamp(25px, 4vw, 42px);
+  font-weight: 900;
+  text-shadow: 0 0 25px #55f24955;
+}
+
+/* SERVERS */
+
+.servers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.server {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.server-label {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--green);
+}
+
+.ip {
+  color: var(--mint);
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 900;
+  margin: 10px 0;
+  overflow-wrap: anywhere;
+}
+
+/* RULES */
+
+.rules {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+}
+
+.rule {
+  border-left: 3px solid var(--green);
+  padding: 12px 16px;
+  background: #17492c20;
+  color: #c1d2c6;
+}
+
+/* JOIN */
+
+.join-box {
+  text-align: center;
+  padding: 55px 25px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: radial-gradient(
+    ellipse at top,
+    #24894e44,
+    transparent 70%
+  ), var(--panel);
+}
+
+.join-box .description {
+  margin: 0 auto 25px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid var(--line);
+  color: #718979;
+  font-size: 13px;
+}
+
+/* TOAST */
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  background: #123923;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 12px 18px;
+  transition: .3s;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* MOBILE */
+
+@media(max-width: 760px) {
+  .menu {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #07130c;
+    padding: 20px 6%;
+    flex-direction: column;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps,
+  .servers,
+  .rules {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 600px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- OPENING -->
+<div id="intro">
+  <div>
+    <div class="intro-logo">RQM</div>
+    <div class="intro-sub">REQUIEM</div>
+  </div>
+</div>
+
+<!-- PARTICLES -->
+<div class="particles">
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#home" class="brand">
+    REQUIEM <span>[RQM]</span>
+  </a>
+
+  <button class="menu" id="menuBtn">☰</button>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#system">System</a>
+    <a href="#modes">Gamemodes</a>
+    <a href="#servers">Servers</a>
+    <a href="#rules">Rules</a>
+    <a href="#join">Join</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div>
+    <div class="tagline">MINECRAFT COMPETITIVE COMMUNITY</div>
+
+    <h1>RE<span>QUIEM</span></h1>
+
+    <div class="nickname">R Q M</div>
+
+    <p>
+      We don't chase a name. We build one.
+      A community driven by skill, loyalty, teamwork,
+      and the will to keep improving.
+    </p>
+
+    <div class="buttons">
+      <a class="btn primary"
+         href="https://discord.gg/HPzxZ9RDtC"
+         target="_blank">
+        Join Our Discord ↗
+      </a>
+
+      <a class="btn secondary" href="#about">
+        Discover RQM ↓
+      </a>
+    </div>
+
+    <div class="scroll">SCROLL TO EXPLORE</div>
+  </div>
+</header>
+
+<main>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">01 / IDENTITY</div>
+  <h2>More than a tag.</h2>
+
+  <p class="description">
+    REQUIEM — known as RQM — is a Minecraft clan
+    built around competition and community.
+    We bring players together to learn, play,
+    improve, and represent the name with pride.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">⚔️</div>
+      <h3>Skill & Growth</h3>
+      <p>Practice your mechanics, challenge yourself,
+      and become a stronger player.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">♟️</div>
+      <h3>Team Coordination</h3>
+      <p>Communicate, support your teammates,
+      and make decisions together.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">✦</div>
+      <h3>Respect & Loyalty</h3>
+      <p>A strong clan is built by the people
+      behind the tag.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLAN SYSTEM -->
+<section id="system">
+  <div class="section-tag">02 / CLAN SYSTEM</div>
+  <h2>How RQM works</h2>
+
+  <p class="description">
+    A clear path for members to join the community
+    and participate in clan activities.
+  </p>
+
+  <div class="steps">
+    <div class="step">
+      <strong>STEP 01</strong>
+      <h3>Connect</h3>
+      <p>Join the official Discord and read
+      the information and rules.</p>
+    </div>
+
+    <div class="step">
+      <strong>STEP 02</strong>
+      <h3>Introduce Yourself</h3>
+      <p>Meet the community and share your
+      preferred playstyles.</p>
+    </div>
+
+    <div class="step">
+      <strong>STEP 03</strong>
+      <h3>Play Together</h3>
+      <p>Join sessions, practice, team up,
+      and participate in activities.</p>
+    </div>
+
+    <div class="step">
+      <strong>STEP 04</strong>
+      <h3>Represent RQM</h3>
+      <p>Stay respectful, follow server rules,
+      and help the clan grow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GAMEMODES -->
+<section id="modes">
+  <div class="section-tag">03 / PLAYSTYLE</div>
+  <h2>Different modes. One name.</h2>
+
+  <p class="description">
+    RQM brings players together across different
+    Minecraft playstyles.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">💠</div>
+      <h3>Crystal PvP</h3>
+      <p>Fast combat focused on timing,
+      movement, awareness, and precision.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💥</div>
+      <h3>Cart PvP</h3>
+      <p>Explosive combat, positioning,
+      and coordinated plays.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>SMP</h3>
+      <p>Survival, progression, alliances,
+      and community adventures.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">⚔️</div>
+      <h3>Sword / Axe PvP</h3>
+      <p>Classic duels built around spacing,
+      movement, and consistency.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔱</div>
+      <h3>Spear / Mace</h3>
+      <p>Explore different combat styles
+      and adapt your playstyle.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏆</div>
+      <h3>Events & Scrims</h3>
+      <p>Clan sessions, competitions,
+      practice matches, and events.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- MOTTO -->
+<section>
+  <div class="section-tag">04 / OUR MINDSET</div>
+  <h2>Our Motto</h2>
+
+  <div class="motto">
+    "Stand as one. Fight with purpose.
+    Leave a legacy."
+  </div>
+
+  <p class="description" style="margin-top:18px">
+    Every member contributes to the name.
+    Every match is a chance to improve.
+    Every moment is another chapter of REQUIEM.
+  </p>
+</section>
+
+<!-- SERVERS -->
+<section id="servers">
+  <div class="section-tag">05 / CONNECT</div>
+  <h2>Find us in-game.</h2>
+
+  <p class="description">
+    Choose a server and connect.
+    Check the supported Minecraft edition
+    and version before joining.
+  </p>
+
+  <div class="servers">
+
+    <div class="server">
+      <div class="server-label">SERVER 01</div>
+      <div class="ip">play.swiftsmp.net</div>
+
+      <button class="btn primary copy"
+              data-ip="play.swiftsmp.net">
+        Copy IP
+      </button>
+    </div>
+
+    <div class="server">
+      <div class="server-label">SERVER 02</div>
+      <div class="ip">projectsmp.org</div>
+
+      <button class="btn primary copy"
+              data-ip="projectsmp.org">
+        Copy IP
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- RULES -->
+<section id="rules">
+  <div class="section-tag">06 / STANDARDS</div>
+  <h2>Represent the name.</h2>
+
+  <p class="description">
+    A few basic standards help keep our community solid.
+  </p>
+
+  <div class="rules">
+    <div class="rule">Respect clan members and other players.</div>
+    <div class="rule">No cheating or exploiting where it breaks server rules.</div>
+    <div class="rule">Keep Discord channels organized.</div>
+    <div class="rule">Don't start drama or damage the clan's reputation.</div>
+    <div class="rule">Communicate honestly with teammates.</div>
+    <div class="rule">Follow the rules of every server you play on.</div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="join-box">
+    <div class="section-tag">07 / RECRUITMENT</div>
+
+    <h2>Become part of REQUIEM.</h2>
+
+    <p class="description">
+      Want to play with us, meet the members,
+      or learn about joining?
+      Our Discord is the place to start.
+    </p>
+
+    <a class="btn primary"
+       href="https://discord.gg/HPzxZ9RDtC"
+       target="_blank">
+      Join RQM Discord ↗
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong style="color:#a8ffd0;letter-spacing:4px">
+    REQUIEM [RQM]
+  </strong>
+
+  <br>
+  Stand as one. Fight with purpose. Leave a legacy.
+
+  <br>
+  Independent Minecraft community.
+  Not affiliated with Mojang or Microsoft.
+</footer>
+
+<div class="toast" id="toast">IP copied!</div>
+
+<script>
+
+// MOBILE NAVIGATION
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+  });
+});
+
+// COPY SERVER IP
+
+const toast = document.getElementById("toast");
+
+document.querySelectorAll(".copy").forEach(button => {
+
+  button.addEventListener("click", async () => {
+
+    const ip = button.dataset.ip;
+
+    try {
+      await navigator.clipboard.writeText(ip);
+      toast.textContent = "Copied: " + ip;
+    } catch (error) {
+      toast.textContent = "Copy unavailable. IP: " + ip;
+    }
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2300);
+
+  });
+
+});
+
+</script>
+</body>
+</html>
